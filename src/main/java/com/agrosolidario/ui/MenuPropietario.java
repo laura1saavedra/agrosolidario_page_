@@ -16,6 +16,14 @@ public class MenuPropietario {
    
     private final int usuarioId = 1;
 
+    public MenuPropietario() {
+        this(1);
+    }
+
+    public MenuPropietario(int usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+    
     public void iniciar() {
 
         int opcion;
@@ -110,7 +118,7 @@ public class MenuPropietario {
         f.setDescripcion(sc.nextLine());
 
         int id = service.crearFinca(f, usuarioId);
-        System.out.println("✅ Finca creada con ID: " + id);
+        System.out.println("Finca creada con ID: " + id);
     }
 
     // =========================
@@ -120,7 +128,7 @@ public class MenuPropietario {
         Finca f = service.obtenerFinca(service.obtenerDuenoPorUsuario(usuarioId).getIdDueno());
 
         if (f == null) {
-            System.out.println("⚠️ No tiene finca registrada.");
+            System.out.println("No tiene finca registrada.");
             return;
         }
 
@@ -139,7 +147,7 @@ public class MenuPropietario {
         Finca f = service.obtenerFinca(service.obtenerDuenoPorUsuario(usuarioId).getIdDueno());
 
         if (f == null) {
-            System.out.println("⚠️ No existe finca para actualizar.");
+            System.out.println(" No existe finca para actualizar.");
             return;
         }
 
@@ -169,12 +177,12 @@ public class MenuPropietario {
         Finca f = service.obtenerFinca(service.obtenerDuenoPorUsuario(usuarioId).getIdDueno());
 
         if (f == null) {
-            System.out.println("⚠️ No existe finca para eliminar.");
+            System.out.println("No existe finca para eliminar.");
             return;
         }
 
         service.eliminarFinca(f.getIdFinca(), usuarioId);
-        System.out.println("🗑️ Finca eliminada.");
+        System.out.println(" Finca eliminada.");
     }
 
     // =========================
