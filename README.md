@@ -147,7 +147,7 @@ src/
 ...
 Oferta publicada con éxito.
 
-###S olicitar empleo
+### Solicitar empleo
 
 - Ingrese su email: desplazado@test.com
 - Ingrese su contraseña: 123456
