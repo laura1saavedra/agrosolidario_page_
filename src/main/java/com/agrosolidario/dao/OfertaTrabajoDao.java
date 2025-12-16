@@ -85,7 +85,24 @@ public class OfertaTrabajoDao {
         }
         return lista;
     }
+    
+    public List<OfertaTrabajo> listarActivas() {
+        List<OfertaTrabajo> lista = new ArrayList<>();
+        String sql = "SELECT * FROM oferta_trabajo WHERE estado = 'ACTIVA' ORDER BY fecha_publicacion DESC";
 
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                lista.add(mapearOferta(rs));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error listando ofertas activas", e);
+        }
+        return lista;
+    }
 
     public boolean actualizar(OfertaTrabajo oferta) {
         String sql = """
