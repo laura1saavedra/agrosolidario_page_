@@ -8,30 +8,34 @@ Este proyecto es una aplicación de gestión de ofertas de trabajo para personas
 
 El objetivo de este sistema es permitir la interacción entre propietarios de fincas y personas desplazadas para facilitar la contratación de mano de obra agrícola. El sistema tiene los siguientes módulos principales:
 
-- **Registro e inicio de sesión**
+- **Registro e inicio de sesión.**
 - **Gestión de ofertas**: Publicación, modificación, eliminación y visualización de ofertas de trabajo.
 - **Gestión de solicitudes**: Enviar y gestionar solicitudes de trabajo.
 - **Gestión de perfil**: Permite a las personas desplazadas gestionar su información personal y habilidades.
 
-## Funcionalidades
+## Funcionalidades:
 
 ### 1. **Registro e inicio de sesión**
+
 - Los usuarios pueden registrarse como **Propietarios** o **Personas Desplazadas**.
 - Pueden acceder al sistema mediante un login utilizando su **correo electrónico** y **contraseña**.
 - El sistema valida los roles y redirige a la interfaz correspondiente según el tipo de usuario.
 
 ### 2. **Gestión de ofertas**
+
 - **Propietarios** pueden publicar nuevas ofertas de trabajo.
 - Pueden consultar, modificar, o eliminar sus ofertas activas.
 - Las ofertas tienen un estado que puede ser **ACTIVA**, **FINALIZADA** o **CANCELADA**.
 - Las ofertas pueden estar asociadas con habilidades requeridas.
 
 ### 3. **Gestión de solicitudes**
+
 - Las **Personas Desplazadas** pueden enviar solicitudes a ofertas activas.
 - Los **Propietarios** pueden aceptar o rechazar solicitudes de trabajo.
 - Las solicitudes tienen los estados **PENDIENTE**, **ACEPTADA** o **RECHAZADA**.
 
 ### 4. **Gestión de perfil**
+
 - Los usuarios pueden gestionar su perfil personal (nombre, ubicación, experiencia, etc.).
 - Pueden agregar y eliminar habilidades de su perfil.
 - Pueden gestionar documentos asociados a su perfil (identificación, certificados, etc.).
@@ -64,6 +68,8 @@ src/
          │    └── DatabaseConnection.java
 
 ```
+---
+
 
 ## Tecnologías Utilizadas:
 
@@ -100,7 +106,7 @@ src/
 
 - Ejecuta el archivo app.java o la clase MenuPropietario.java (según si usas interfaz de consola o web).
 
-4. Interfaz:
+4. **Interfaz:**
 
 - El proyecto actualmente funciona mediante consola, y muestra menús para interactuar con el sistema.
 
@@ -111,19 +117,19 @@ src/
 
 ## Pruebas
 
-###Prueba 1: Registro de usuario
+### Prueba 1: Registro de usuario
 
 - Registra un propietario y una persona desplazada con el sistema.
 
 - Verifica que ambos usuarios pueden iniciar sesión.
 
-###Prueba 2: Publicar y gestionar ofertas
+### Prueba 2: Publicar y gestionar ofertas
 
 - Un propietario crea una oferta.
 
 - Verifica que la oferta sea visible en su lista de ofertas y que pueda ser modificada o eliminada.
 
-###Prueba 3: Solicitar empleo
+### Prueba 3: Solicitar empleo
 
 - Una persona desplazada envía una solicitud a la oferta publicada por el propietario.
 
@@ -141,7 +147,8 @@ src/
 ...
 Oferta publicada con éxito.
 
-###Solicitar empleo
+###S olicitar empleo
+
 - Ingrese su email: desplazado@test.com
 - Ingrese su contraseña: 123456
 - ¿Desea aplicar a la oferta 'Trabajador agrícola'? (Sí/No)
