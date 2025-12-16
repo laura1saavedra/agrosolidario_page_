@@ -1,0 +1,127 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil persona</title>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="header">
+  <span>AgroSolidario</span>
+
+  <nav>
+    <a href="./solicitudes.jsp">Gestión de solicitudes</a>
+    <a href="./pe-persona.jsp" class="active">Perfil</a>
+    <a href="../index.jsp">Cerrar sesión</a>
+  </nav>
+</header>
+
+<main class="container perfil">
+
+  <!-- Barra superior blanca "Perfil" -->
+  <div class="perfil-top">
+    <h2 class="perfil-top__title">Perfil:</h2>
+    <a href="./solicitudes.jsp" class="perfil-top__arrow" aria-label="Volver">→</a>
+  </div>
+
+  <!-------------------- DATOS PERSONALES ----------------->
+  <section class="form-box perfil-card">
+    <p class="perfil-card__section-title">Datos personales:</p>
+
+    <!-- Nombre completo (full) -->
+    <div class="perfil-grid">
+      <div class="full">
+        <label for="nombre">Nombre completo:</label>
+        <input id="nombre" class="readonly" type="text" value="Lorem ipsum dolor sit amet, consectetuer" disabled>
+      </div>
+
+      <!-- 2 columnas -->
+      <div>
+        <label for="doc">Número de documento:</label>
+        <input id="doc" class="readonly" type="text" value="Lorem ipsum dolor sit" disabled>
+      </div>
+
+      <div>
+        <label for="ubicacion">Ubicación:</label>
+        <input id="ubicacion" type="text" value="Lorem ipsum dolor sit">
+      </div>
+
+      <div>
+        <label for="celular">Número de celular:</label>
+        <input id="celular" type="tel" value="Lorem ipsum dolor sit">
+      </div>
+
+      <div>
+        <label for="correo">Correo:</label>
+        <input id="correo" class="readonly" type="email" value="Lorem ipsum dolor sit" disabled>
+      </div>
+    </div>
+
+    <p class="perfil-estado-doc">Documento de identidad - Guardado</p>
+  </section>
+
+  <!-------------------------- EXPERIENCIA LABORAL ------------------------>
+  <section class="form-box perfil-card">
+    <p class="perfil-card__section-title">Experiencia laboral:</p>
+
+    <div class="perfil-grid">
+      <div class="full">
+        <label for="desc-exp">Descripción de experiencia laboral:</label>
+        <textarea id="desc-exp">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aliquam lorem ante.</textarea>
+      </div>
+
+      <div class="full">
+        <label for="habilidades">Habilidades que domina:</label>
+        <input id="habilidades" type="text" value="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean">
+      </div>
+
+      <div>
+        <label for="anios">Años de experiencia:</label>
+        <input id="anios" type="number" value="3">
+      </div>
+
+      <div>
+        <label for="edad">Edad:</label>
+        <input id="edad" type="number" value="28">
+      </div>
+    </div>
+  </section>
+
+  <!-------------------- FOTO + NOTA + BOTONES -------------------->
+  <section class="perfil-bottom">
+
+    <!-- Subir foto -->
+    <div class="form-box perfil-card perfil-upload">
+      <div class="perfil-upload__row">
+        <p>Adjunte una foto de perfil:</p>
+
+        <label class="upload-btn" for="foto">Subir archivo</label>
+        <input id="foto" class="file-input" type="file" accept="image/*">
+      </div>
+    </div>
+
+    <!-- Nota -->
+    <div class="form-box perfil-card perfil-note">
+      <p class="perfil-note__title">Tener presente:</p>
+      <p>
+        Los datos como el nombre, el número de documento y el correo, no podrán ser cambiados
+        a menos de que el usuario pida este al correo servicioalcliente@agrosolidario.com
+      </p>
+    </div>
+
+    <!-- Acciones -->
+    <div class="perfil-actions">
+      <a href="./solicitudes.jsp" class="btn-dark perfil-actions__btn">Cancelar</a>
+      <a href= "./info-guardada.jsp" class="btn-dark perfil-actions__btn" type="submit">Guardar cambios</a>
+    </div>
+
+  </section>
+</main>
+</body>
+</html>
