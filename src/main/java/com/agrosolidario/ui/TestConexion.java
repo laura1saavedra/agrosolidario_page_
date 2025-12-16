@@ -10,6 +10,10 @@ import java.sql.SQLException;
 public class TestConexion {
 
     public static void main(String[] args) {
+         ejecutarPrueba();
+    }
+
+    public static void ejecutarPrueba() {
 
         String sqlCountUsuarios = "SELECT COUNT(*) AS total FROM usuario";
         String sqlHoraServidor = "SELECT NOW() AS hora";
