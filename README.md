@@ -63,6 +63,7 @@ src/
          ├── config/
          │    └── DatabaseConnection.java
 
+```
 
 ## Tecnologías Utilizadas:
 
@@ -148,8 +149,6 @@ Oferta publicada con éxito.
 
 ---
 
-Desarrollador
-
----
+## Desarrollador:
 
 Laura Saavedra 
