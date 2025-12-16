@@ -3,7 +3,9 @@ package com.agrosolidario.ui;
 import com.agrosolidario.model.Documento;
 import com.agrosolidario.model.DuenoFinca;
 import com.agrosolidario.model.Finca;
+import com.agrosolidario.model.OfertaTrabajo;
 import com.agrosolidario.service.PropietarioService;
+import com.agrosolidario.service.OfertaService;
 
 import java.util.List;
 import java.util.Scanner;
@@ -11,6 +13,7 @@ import java.util.Scanner;
 public class MenuPropietario {
 
     private final PropietarioService service = new PropietarioService();
+    private final OfertaService ofertaService = new OfertaService();
     private final Scanner sc = new Scanner(System.in);
 
    
@@ -37,6 +40,7 @@ public class MenuPropietario {
             System.out.println("6. Eliminar finca");
             System.out.println("7. Registrar documento de la finca");
             System.out.println("8. Listar documentos de la finca");
+            System.out.println("9. Gestionar ofertas laborales");
             System.out.println("0. Salir");
             System.out.print("Seleccione una opción: ");
 
@@ -52,6 +56,7 @@ public class MenuPropietario {
                     case 6 -> eliminarFinca();
                     case 7 -> registrarDocumento();
                     case 8 -> listarDocumentos();
+                    case 9 -> gestionarOfertas();
                     case 0 -> System.out.println("Saliendo del módulo Mi finca...");
                     default -> System.out.println("Opción inválida.");
                 }
@@ -167,7 +172,7 @@ public class MenuPropietario {
         f.setDescripcion(sc.nextLine());
 
         service.actualizarFinca(f, usuarioId);
-        System.out.println("✅ Finca actualizada.");
+        System.out.println("Finca actualizada.");
     }
 
     // =========================
@@ -216,5 +221,126 @@ public class MenuPropietario {
                 " | URL: " + d.getUrl()
             );
         }
+    }
+
+    private void gestionarOfertas() {
+        int opcion;
+        do {
+            System.out.println("\n--- GESTIÓN DE OFERTAS ---");
+            System.out.println("1. Publicar nueva oferta");
+            System.out.println("2. Listar mis ofertas");
+            System.out.println("3. Actualizar oferta");
+            System.out.println("4. Finalizar oferta");
+            System.out.println("5. Eliminar oferta");
+            System.out.println("0. Volver");
+            opcion = Integer.parseInt(sc.nextLine());
+
+            try {
+                switch (opcion) {
+                    case 1 -> publicarOferta();
+                    case 2 -> listarOfertas();
+                    case 3 -> actualizarOferta();
+                    case 4 -> finalizarOferta();
+                    case 5 -> eliminarOferta();
+                    case 0 -> System.out.println("Regresando al menú principal...");
+                    default -> System.out.println("Opción inválida.");
+                }
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        } while (opcion != 0);
+    }
+
+    private OfertaTrabajo leerOfertaDesdeConsola(boolean exigirId) {
+        OfertaTrabajo oferta = new OfertaTrabajo();
+
+        if (exigirId) {
+            System.out.print("ID de la oferta: ");
+            oferta.setIdOferta(Integer.parseInt(sc.nextLine()));
+        }
+
+        System.out.print("Título: ");
+        oferta.setTitulo(sc.nextLine());
+
+        System.out.print("Descripción: ");
+        oferta.setDescripcion(sc.nextLine());
+
+        System.out.print("Requisitos: ");
+        oferta.setRequisitos(sc.nextLine());
+
+        System.out.print("Salario: ");
+        oferta.setSalario(Double.parseDouble(sc.nextLine()));
+
+        System.out.print("Vacantes: ");
+        oferta.setVacantes(Integer.parseInt(sc.nextLine()));
+
+        System.out.print("Fecha de inicio (YYYY-MM-DD): ");
+        oferta.setFechaInicio(java.time.LocalDate.parse(sc.nextLine()));
+
+        System.out.print("Fecha de fin (YYYY-MM-DD): ");
+        oferta.setFechaFin(java.time.LocalDate.parse(sc.nextLine()));
+
+        System.out.print("Fecha límite de aplicación (YYYY-MM-DD): ");
+        oferta.setFechaLimite(java.time.LocalDate.parse(sc.nextLine()));
+
+        return oferta;
+    }
+
+    private void publicarOferta() {
+        OfertaTrabajo oferta = leerOfertaDesdeConsola(false);
+        int id = ofertaService.publicarOferta(oferta, usuarioId);
+        System.out.println(" Oferta publicada con ID: " + id);
+    }
+
+    private void listarOfertas() {
+        List<OfertaTrabajo> ofertas = ofertaService.listarMisOfertas(usuarioId);
+
+        if (ofertas.isEmpty()) {
+            System.out.println("No hay ofertas registradas.");
+            return;
+        }
+
+        for (OfertaTrabajo o : ofertas) {
+            System.out.println("""
+                ------------------------
+                ID: %d
+                Título: %s
+                Salario: %.2f
+                Vacantes: %d
+                Estado: %s
+                Fecha inicio: %s
+                Fecha fin: %s
+                ------------------------
+                """.formatted(
+                    o.getIdOferta(),
+                    o.getTitulo(),
+                    o.getSalario(),
+                    o.getVacantes(),
+                    o.getEstado(),
+                    o.getFechaInicio(),
+                    o.getFechaFin()
+                )
+            );
+        }
+    }
+
+    private void actualizarOferta() {
+        OfertaTrabajo oferta = leerOfertaDesdeConsola(true);
+        ofertaService.actualizarOferta(oferta, usuarioId);
+        System.out.println(" Oferta actualizada.");
+    }
+
+    private void finalizarOferta() {
+        System.out.print("ID de la oferta a finalizar: ");
+        int id = Integer.parseInt(sc.nextLine());
+        ofertaService.finalizarOferta(id, usuarioId);
+        System.out.println("Oferta finalizada.");
+    }
+
+    private void eliminarOferta() {
+        System.out.print("ID de la oferta a eliminar: ");
+        int id = Integer.parseInt(sc.nextLine());
+        ofertaService.eliminarOferta(id, usuarioId);
+        System.out.println("Oferta eliminada.");
     }
 }
