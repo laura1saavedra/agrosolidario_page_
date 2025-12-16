@@ -56,26 +56,4 @@ public class GestionSolicitudesService {
 
         return s;
     }
-
-    private static class SolicitudTrabajoDao {
-
-        public SolicitudTrabajoDao() {
-        }
-
-        private List<SolicitudTrabajo> listarPorPersonaYEstado(int personaId, String pendiente) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        }
-
-        private void actualizarEstado(int solicitudId, String aceptada) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        }
-
-        private SolicitudTrabajo buscarPorId(int solicitudId) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        }
-
-        private List<SolicitudTrabajo> listarHistorial(int personaId) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        }
-    }
 }
