@@ -62,7 +62,7 @@ public class PropietarioService {
         // Seguridad: validar que el usuario es dueño
         DuenoFinca dueno = obtenerDuenoPorUsuario(usuarioId);
 
-        // Regla: 1 finca por dueño
+       
         Finca existente = fincaDao.buscarPorDuenoId(dueno.getIdDueno());
         if (existente != null) {
             throw new IllegalStateException(
@@ -165,6 +165,8 @@ public class PropietarioService {
     }
 
     public Finca obtenerFinca(int idDueno) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       ValidationUtil.validarId(idDueno, "idDueno");
+        
+        return fincaDao.buscarPorDuenoId(idDueno);
     }
 }
