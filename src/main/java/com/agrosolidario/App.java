@@ -28,7 +28,6 @@ public class App {
 
             switch (opcion) {
                 case 1 -> iniciarSesion();
-                case 2 -> TestConexion.ejecutarPrueba();
                 case 2 -> registrarUsuario();
                 case 3 -> TestConexion.ejecutarPrueba();
                 case 0 -> System.out.println("Hasta pronto.");
@@ -113,7 +112,7 @@ public class App {
                 experiencia
             );
 
-            System.out.println("✅ Usuario registrado con ID: " + usuario.getIdUsuario());
+            System.out.println("Usuario registrado con ID: " + usuario.getIdUsuario());
 
         } catch (Exception e) {
             System.out.println("ERROR: " + e.getMessage());
