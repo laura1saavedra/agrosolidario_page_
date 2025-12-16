@@ -14,7 +14,7 @@ public class MenuPropietario {
     private final Scanner sc = new Scanner(System.in);
 
    
-    private final int usuarioId = 1;
+    private int usuarioId = 1;
 
     public MenuPropietario() {
         this(1);
