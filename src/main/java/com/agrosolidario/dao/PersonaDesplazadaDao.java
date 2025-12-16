@@ -11,7 +11,7 @@ import java.util.List;
 
 public class PersonaDesplazadaDao {
 
-    // CREAR persona (usado en registro)
+    
     public void crearPersona(PersonaDesplazada persona) {
         String sql = """
             INSERT INTO persona_desplazada
@@ -36,7 +36,7 @@ public class PersonaDesplazadaDao {
         }
     }
 
-    // ACTUALIZAR perfil
+   
     public boolean actualizarPerfil(PersonaDesplazada persona) {
         String sql = """
             UPDATE persona_desplazada
@@ -61,7 +61,7 @@ public class PersonaDesplazadaDao {
         }
     }
 
-    // BUSCAR por ID (ya lo tenías)
+    
     public PersonaDesplazada buscarPorId(int idPersona) {
         String sql = """
             SELECT id_persona, usuario_id, nombre, fecha_nacimiento, ubicacion,
@@ -83,6 +83,31 @@ public class PersonaDesplazadaDao {
 
         } catch (SQLException e) {
             throw new RuntimeException("Error buscando persona por ID", e);
+        }
+        return null;
+    }
+
+        public PersonaDesplazada buscarPorUsuarioId(int usuarioId) {
+        String sql = """
+            SELECT id_persona, usuario_id, nombre, fecha_nacimiento, ubicacion,
+                   telefono, anios_experiencia, fecha_registro
+            FROM persona_desplazada
+            WHERE usuario_id = ?
+        """;
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, usuarioId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return mapearPersona(rs);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error buscando persona por usuario", e);
         }
         return null;
     }
